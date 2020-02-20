@@ -1,0 +1,69 @@
+html {
+	min-height: 100%;
+}
+
+body {
+	min-height: 100vh;
+}
+
+.format {
+	padding-bottom: 15px;
+}
+
+.thumbnail img {
+	width: 100%;
+}
+
+.thumbnail {
+	padding: 0;
+}
+
+.thumbnail .caption-full {
+	padding: 9px;
+}
+
+.user-list {
+	border: 1px solid black;
+}
+
+th {
+	padding: 8px;
+}
+
+i {
+	padding: 13px;
+}
+
+.keyformat {
+	display: inline;
+	margin-right: 13px;
+}
+
+.iconhead {
+	padding-left: 15px;
+}
+
+input.form-check-input {
+	width: 20x;
+	height: 20px;
+	margin-left: 15px;
+}
+
+#remove-button {
+	display: inline;
+}
+
+footer {
+	border-top: 0.5px solid grey;
+	padding: 20px;
+	background: lightgray;
+	margin: 0;
+}
+
+footer p {
+	text-align: center;
+}
+
+body {
+	margin: 0;
+}

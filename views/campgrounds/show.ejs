@@ -1,0 +1,125 @@
+<%- include('../partials/header'); %>
+
+<div class="container format">
+	<div class="row">
+		<div class="col-md-3">
+			<p class="lead">Yelp Camp</p>
+			<div class="list-group">
+				<li class="list-group-item active">Info 1</li>
+				<li class="list-group-item">Info 2</li>
+				<li class="list-group-item">Info 3</li>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="thumbnail">
+				<img class="img-responsive" src="<%= campground.image %>">
+				<div class="caption-full">
+					<h4 class="pull-right"><%= campground.price %>/night</h4>
+					<h3>
+						<a href="#"><%= campground.name %></a>
+						<h4><%= campground.location %></h4>
+					</h3>
+						<p>
+							<%= campground.description %>
+						</p>
+				</div>
+				
+				<% if(campground.wifi == "Yes") { %>
+				<i class="fas fa-wifi fa-2x"></i>
+				<% } %>
+				
+				<% if(campground.tent == "Yes") { %>
+				<i class="fas fa-campground fa-2x"></i>
+				<% } %>
+				
+				<% if(campground.power == "Yes") { %>
+				<i class="fas fa-plug fa-2x"></i>
+				<% } %>
+				
+				<% if(campground.rv == "Yes") { %>
+				<i class="fas fa-truck-moving fa-2x"></i>
+				<% } %>
+				
+				<% if(campground.handicap == "Yes") { %>
+				<i class="fas fa-wheelchair fa-2x"></i>
+				<% } %>
+				
+				<% if(campground.pets == "Yes") { %>
+				<i class="fas fa-paw fa-2x"></i>
+				<% } %>
+				
+				<% if(campground.boatramp == "Yes") { %>
+				<i class="fas fa-ship fa-2x"></i>
+				<% } %>
+				
+				<br>
+				 
+				<% if(currentUser) { %>
+					<% if(currentUser.role == "Admin") { %>
+						<a class= "btn btn-primary" href= "/campgrounds/<%= campground._id %>/edit">Edit</a>
+					<% } %>
+				<% } %>
+				
+				<% if(currentUser) { %>
+					<% if(currentUser.role == "Admin") { %>
+						<form id= "remove-button" action="/campgrounds/<%= campground._id %>?_method=DELETE" method= "POST">
+							<button class= "btn btn-danger">Delete</button>
+						</form>
+					<% } %>
+				<% } %>
+				
+				<br>
+				
+				<p>Added By <%= campground.author.username %> on <%= moment(campground.createdOn).utcOffset('-0500') %></p>
+			</div>
+			<div class="well">
+				<h3>Comments</h3>
+				<div class="text-right">
+					<a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+				</div>
+				<hr>
+				<% campground.comments.forEach(function(comment) { %>
+				<div class="row">
+					<div class="col-md-12">
+						<strong><%= comment.author.username %></strong>
+						<span class="pull-right"><%= moment(comment.createdOn).fromNow() %></span>
+						<p><%= comment.text %></p>
+						<% if(currentUser) { %>
+							<% if(comment.author.id.equals(currentUser.id)) { %>
+								<a class= "btn btn-xs btn-primary" href = "/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
+								<form id= "remove-button" action= "/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method= "POST">
+									<button class= "btn btn-xs btn-danger">Delete</button>
+								</form>
+							<% } else if(currentUser.role == "Admin") { %>
+								<form id= "remove-button" action= "/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method= "POST">
+									<button class= "btn btn-xs btn-danger">Delete</button>
+								</form>
+							<% } %>
+						<% } %>
+					</div>
+				</div>
+				<% }) %>
+			</div>
+			
+			<div class="thumbnail">
+				<div class="row keyformat">
+					<h3 class="iconhead">Icon Legend</h3>
+					<h5>
+						<i class="fas fa-wifi fa-1x"></i>=Wifi Available
+						|<i class="fas fa-campground fa-1x"></i>= Tent Camping Available
+						|<i class="fas fa-plug fa-1x"></i>= Power Available
+						|<i class="fas fa-truck-moving fa-1x"></i>= RV Camping Available
+						<br>
+						<i class="fas fa-wheelchair fa-1x"></i>= Handicap Accessible
+						|<i class="fas fa-paw fa-1x"></i>= Pets Allowed
+						|<i class="fas fa-ship fa-1x"></i>= Boat Ramp
+					</h5>
+				</div>
+			</div>
+			<a class="btn btn-success" href="/campgrounds">Go Back</a>
+		</div>
+	</div>
+	
+</div>
+
+<%- include('../partials/footer'); %>

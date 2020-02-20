@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>YelpCamp</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/landing.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+    </head>
+    <body>
+		
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">Camp MD</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class= "nav navbar-nav mr-auto mt-2 mt-lg-0">
+						<li><a href= "/">Home</a></li>
+						<li><a href= "/about">About Us</a></li>
+						<li><a href= "/campgrounds">Campgrounds</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<% if(!currentUser) { %>
+						<li><a href="/login">Log In</a></li>
+						<li><a href="/register">Sign Up</a></li>
+						<% } else {%>
+						<li><a href="/profile">Signed In As <%= currentUser.name %></a></li>
+						<li><a href="/logout">Log Out</a></li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</nav>
+    
+    <div class="container">
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
+		
+	<div class="container">
+    
+		<div class= "landing-header">
+			<h1>Welcome to Camp Maryland!</h1>
+
+			<a class= "btn btn-lg btn-success" href= "/campgrounds">View all Campgrounds</a>
+		</div>
+		
+		<ul class="slideshow">
+			  <li></li>
+			  <li></li>
+			  <li></li>
+			  <li></li>
+			  <li></li>
+			</ul>
+	</div>
+		
+		<div class="landing-body">
+			<div class= "body-section">
+				<h3>
+				Our Mission
+				</h3>
+				<p>
+					Here at Camp Maryland, we strive to provide people with a place to share past experiences that they have had at campsites around the State of Maryland. In addition, Camp Maryland strives to provide accurate details and descriptions about each campsite that is listed on Camp Maryland! All campsites on the site have been approved by a site admin, which helps with the verification of the information about each campsite.
+				</p>
+			</div>		
+			
+			<div class= "body-section">
+				<h3>
+					Getting Started
+				</h3>
+				<p>
+					Welcome to Camp Maryland! To get started, click the view all campgrounds above to view different camping locations around the State of Maryland. If you would like to leave comments on a campsite or request a new campground to be added, click on register below or on the navigation bar. We hope that you find the infromation on this site to be useful for planning your next camping trip. Let Camp Maryland be your trip planning assistant!
+				</p>
+			
+				<a class= "btn btn-lg btn-primary" id= "get-started-button" href= "/register">Get Started Today!</a>
+			</div>
+		</div>
+
+<%- include('partials/footer'); %>

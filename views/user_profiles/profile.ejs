@@ -1,0 +1,15 @@
+<%- include('../partials/header'); %>
+
+<h1>Welcome to the User Profile!</h1>
+<br>
+<h4>Username: <%= currentUser.username %></h4>
+<h4>Name: <%= currentUser.name %></h4>
+<h4>E-mail: <%= currentUser.email %></h4>
+<h4>Role: <%= currentUser.role %></h4>
+<br>
+
+<a class="btn btn-primary btn-lg" href="/update">Update Profile</a>
+
+<br>
+
+<%- include('../partials/footer'); %>

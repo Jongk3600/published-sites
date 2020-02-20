@@ -1,0 +1,37 @@
+<%- include('partials/header'); %>
+
+<h1>Users</h1>
+
+<br>
+
+<table class="user-list">
+	<tr class="user-list">
+		<th class="user-list">User ID</th>
+		<th class="user-list">Name</th>
+		<th class="user-list">Username</th>
+		<th class="user-list">E-mail</th>
+		<th class="user-list">User Role</th>
+		<th class="user-list">Edit User Role</th>
+		<th class="user-list">Delete User</th>
+	</tr>
+	<% users.forEach(function(user) { %>
+		<tr class="user-list">
+			<th class="user-list"><%= user.id %></th>
+			<th class="user-list"><%= user.name %></th>
+			<th class="user-list"><%= user.username %></th>
+			<th class="user-list"><%= user.email %></th>
+			<th class="user-list"><%= user.role %></th>
+			<th class="user-list"><a class="btn btn-md btn-primary" href="/admin/users/<%= user.id %>/edit">Edit</a></th>
+			<th class="user-list">
+				<form action="/admin/users/<%= user.id %>/delete?_method=DELETE" method= "POST">
+					<button class="btn btn-md btn-danger">Delete</button>
+				</form>
+			</th>
+		</tr>
+	<% }) %>
+</table>
+
+<br>
+<br>
+
+<%- include('partials/footer'); %>
